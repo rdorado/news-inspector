@@ -19,6 +19,42 @@ def getFeatures(csr, features_index):
 
 
 '''
+model1 = CRFNamedEntityExtractor()
+model1.train(saveto="myfile", train_texts=["file1", "file2"], fature_set="file")
+
+
+model2 = N1KnowledgeMap()
+model2.train(saveto="myfile", )
+
+//Train
+//extractor.train
+maker = ModelMaker(algorithm="");
+train_model
+
+
+//Classify
+
+pol_classifier = load_model("pol-classifier.model")
+polarity = pol_classifier.classify(txt)
+
+ncat1_classifier = load_model("newscat-classifier.model")
+cat1 = ncat1_classifier.classify(txt)
+
+
+//Extract
+ne_params = {};
+ne_extractor = load_model("my-model.model");
+namedEntities = extractor.extract(txt, ne_params);
+
+fw_params = {};
+fw_extractor = load_model("fw-model.model");
+functionWords = fw_extractor.extract(txt, fw_params)
+
+knowledge_base = load_model("knowledge-base.model");
+graph = knowledge_base.tomap(namedEntities, functionWords);
+
+
+
 #TODO: create a connectio class with this info
 connection = pymysql.connect(host='127.0.0.1',
                              user='muuddbuser',
@@ -60,4 +96,9 @@ for scrap in scraps:
    i+=0   
    connection.commit()
 
+
+
+
 '''
+
+
