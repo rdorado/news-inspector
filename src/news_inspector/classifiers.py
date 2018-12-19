@@ -1,0 +1,3 @@
+
+class PolarityClassifier:
+    pass
