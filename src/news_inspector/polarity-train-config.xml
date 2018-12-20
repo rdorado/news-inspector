@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<training-config>
+  <document file=""../../data/subjclueslen1-HLTEMNLP05-postive.tff">
+    <target feature="polarity" name="positive" /> 
+  </document>
+  <document file=""../../data/subjclueslen1-HLTEMNLP05-negative.tff">
+    <target feature="polarity" name="negative" /> 
+  </document>  
+</training-config>
