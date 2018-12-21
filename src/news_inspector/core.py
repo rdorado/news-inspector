@@ -1,7 +1,8 @@
 
 
-def train_classifier(class, config, output):
+def train_model(klass, config, output):    
     pass
 
-def load_model():
+
+def load_model(model):
     pass
