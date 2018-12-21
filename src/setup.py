@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="news-inspector",
-    version="0.0.2",
+    version="0.0.3",
     author="Ruben Dorado",
     author_email="ruben.dorados@gmail.com",
     description="Utilities to analyze and extract information from news",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/rdorado/news-inspector",
     install_requires=[
-        'scikit-learn'
+        'scikit-learn>=0.17.1'
     ],
     packages=setuptools.find_packages(),
     classifiers=[
