@@ -28,7 +28,7 @@ class PolarityClassifier(Classifier):
         
         train_data = []
         for text in texts:
-            train_data.append(textProcessor.apply(text))
+            train_data.append(textProcessor.process(text))
         
         count_vect = CountVectorizer()
         X_train = self.count_vect.fit_transform(train_data)
