@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="news-inspector",
-    version="0.0.1",
+    version="0.0.2",
     author="Ruben Dorado",
     author_email="ruben.dorados@gmail.com",
     description="Utilities to analyze and extract information from news",
