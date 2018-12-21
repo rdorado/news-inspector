@@ -24,7 +24,7 @@ class PolarityClassifier(Classifier):
     def learn(self, texts, targets, output, textProcessor = none):
         
         if textProcessor == none:
-            textProcessor = new DefaultTextProcessor() 
+            textProcessor = DefaultTextProcessor() 
         
         train_data = []
         for text in texts:
