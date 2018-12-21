@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from sklearn.linear_model import SGDClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from news_inspector.nlp import DefaultTextProcessor
 import pickle
 
 class Classifier(ABS):
