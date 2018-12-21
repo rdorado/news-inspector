@@ -5,7 +5,7 @@ from sklearn.naive_bayes import MultinomialNB
 from news_inspector.nlp import DefaultTextProcessor
 import pickle
 
-class Classifier(ABS):
+class Classifier(ABC):
     
      @abstractmethod
      def classify(self, text):
