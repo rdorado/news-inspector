@@ -12,10 +12,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rdorado/news-inspector",
+    packages=setuptools.find_packages(),
     install_requires=[
         'scikit-learn>=0.17.1'
     ],
-    packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",

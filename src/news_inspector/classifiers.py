@@ -6,6 +6,7 @@ from news_inspector.nlp import DefaultTextProcessor
 from news_inspector.core import Trainable
 import pickle
 
+
 class Classifier(Trainable):
     
      @abstractmethod
