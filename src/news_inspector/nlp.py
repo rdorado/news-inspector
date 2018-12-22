@@ -3,7 +3,7 @@
 class DefaultTextProcessor:
     
     def process(self, text):
-        return text.split()
+        return text
 
 def getKeywords(text):
     return []
