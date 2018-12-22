@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<training-config output="polarity-classifier.v0.model">
-  <document file="subjclueslen1-HLTEMNLP05-positive.tff" target="positive" />
-  <document file="subjclueslen1-HLTEMNLP05-negative.tff" target="negative" />
-</training-config>
