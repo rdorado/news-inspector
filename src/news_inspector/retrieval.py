@@ -17,3 +17,5 @@ class LocationRetriever(Retriever):
 
      def retrieve(self, text):
          return []
+
+    
