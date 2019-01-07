@@ -4,9 +4,12 @@ from news_inspector.core import Trainable
 
 
 class Retriever(Trainable):
+    """
+    Retriever abstract class
+    """
     
-     @abstractmethod
-     def retrieve(self, text):
+    @abstractmethod
+    def retrieve(self, text):
         pass    
 
 
