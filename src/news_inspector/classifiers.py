@@ -13,7 +13,6 @@ class Classifier(Trainable):
      def classify(self, text):
         pass    
 
-
     
 class PolarityClassifier(Classifier):
     
