@@ -85,9 +85,12 @@ class SentenceGetter(object):
 
 
 class Retriever(Trainable):
+    """
+    Retriever abstract class
+    """
     
-     @abstractmethod
-     def retrieve(self, text):
+    @abstractmethod
+    def retrieve(self, text):
         pass    
 
 
@@ -115,7 +118,5 @@ class LocationRetriever(Retriever):
          text = nltk.pos_tag(nltk.word_tokenize(text.lower()))
          X = sent2features(text)
          return self.clf.predict([X])
-
-
 
 
