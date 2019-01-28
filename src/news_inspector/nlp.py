@@ -1,4 +1,4 @@
-
+import nltk
 
 class DefaultTextProcessor:
     
@@ -6,4 +6,9 @@ class DefaultTextProcessor:
         return text
 
 def getKeywords(text):
-    return []
+    resp = []
+    for sentence in nltk.tokenize.sent_tokenize(text):
+       print("\n"+sentence)
+       sentence = nltk.pos_tag(nltk.word_tokenize(sentence.lower()))
+       resp.append(sentence)
+    return resp

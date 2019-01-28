@@ -24,10 +24,19 @@ class TrainingConfig:
         self.targets = []
         for doc in root.iter('document'):
             text = ""
-            with open(doc.attrib['file']) as file:
-                text = " ".join(map(lambda x: x.strip(), file.readlines()))
-            self.texts.append( text )
-            self.targets.append(doc.attrib['target'])
+            if not os.path.isfile(doc.attrib['file']): 
+                raise Exception("Warning. Document '"+doc.attrib['file']+"' in '"+filename+"'was not found. Skipping it.")
+            else:
+                encoding = "utf-8"
+                try: 
+                    encoding = doc.attrib['encoding']
+                except: pass
+                with open(doc.attrib['file'], encoding="ISO-8859-1") as file:
+                    text = " ".join(map(lambda x: x.strip(), file.readlines()))
+                self.texts.append( text )
+                try: 
+                    self.targets.append( doc.attrib['target'] )
+                except: pass  
         self.output = root.attrib['output']
 
     def getTexts(self):

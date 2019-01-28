@@ -13,7 +13,6 @@ class Classifier(Trainable):
      def classify(self, text):
         pass    
 
-
     
 class PolarityClassifier(Classifier):
     
@@ -24,7 +23,6 @@ class PolarityClassifier(Classifier):
     def learn(self, config, textProcessor = None):
         texts = config.getTexts()
         targets = config.getTargets()
-         
     
         if textProcessor == None:
             textProcessor = DefaultTextProcessor() 
