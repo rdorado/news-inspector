@@ -7,7 +7,6 @@ import nltk
 
 from news_inspector.core import Trainable
 
-
 def word2features(sent, i):
     word = sent[i][0]
     postag = sent[i][1]
