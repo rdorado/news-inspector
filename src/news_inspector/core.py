@@ -65,5 +65,7 @@ def train_model(klass, configfile, outputfile):
     pickle.dump(trainable, open(outputfile, "wb" ))
 
 
-def load_model(model):
-    return pickle.load( open(model, "rb"))
+def load_model(filename):
+    with open(filename, "rb") as file:
+       return pickle.load(file)
+
