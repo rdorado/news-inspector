@@ -94,7 +94,7 @@ class Retriever(Trainable):
         pass    
 
 
-class LocationRetriever(Retriever):
+class GenericRetriever(Retriever):
 
      def learn(self, config):  
          data = pd.read_csv("ner_dataset.csv", encoding="latin1")   

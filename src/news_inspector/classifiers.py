@@ -14,7 +14,7 @@ class Classifier(Trainable):
         pass    
 
     
-class PolarityClassifier(Classifier):
+class GenericClassifier(Classifier):
     
     def classify(self, text):
         X_test = self.count_vect.transform([text])

@@ -2,8 +2,8 @@ from news_inspector.core import train_model
 from news_inspector.core import load_model
 from news_inspector import nlp
 
-from news_inspector.classifiers import PolarityClassifier
-from news_inspector.retrieval import LocationRetriever
+from news_inspector.classifiers import GenericClassifier
+from news_inspector.retrieval import GenericRetriever
 from news_inspector.knowledge_base import NaiveKnowledgeBase
 
 text = """
@@ -16,13 +16,13 @@ Mounties cordoned off a section of the parking lot beginning at HomeSense and ex
 Anyone who witnessed the shooting should call Richmond RCMP at 604-278-1212 and cite file 2018-41056.
 """
 
-#train_model(PolarityClassifier, "polarity-classifier-training-config.xml", "polarity-classifier.v0.model");
+train_model(GenericClassifier, "polarity-classifier-training-config.xml", "polarity-classifier.v0.model");
 model = load_model("polarity-classifier.v0.model");
 result = model.classify(text);
 print(result)
 
 
-#train_model(LocationRetriever, "location-ir-training-config.xml", "location-ir.v0.model");
+train_model(GenericRetriever, "location-ir-training-config.xml", "location-ir.v0.model");
 model = load_model("location-ir.v0.model");
 locations = model.retrieve(text);
 print(locations)
