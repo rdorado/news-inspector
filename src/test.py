@@ -6,6 +6,30 @@ from news_inspector.classifiers import GenericClassifier
 from news_inspector.retrieval import GenericRetriever
 from news_inspector.knowledge_base import NaiveKnowledgeBase
 
+'''
+import sys
+import xml.etree.ElementTree as ET
+
+confdoc = ET.Element('document')
+with open("ner_dataset.csv", "r") as infile:
+   for line in infile.readlines():
+      if line.startswith("Sentence: "):
+         doc = ET.SubElement(confdoc, "sentence")
+      splits = line.split(",")
+      wrd = ET.SubElement(doc, "word")
+      wrd.text = splits[-3].strip()
+      wrd.set("pos", splits[-2].strip())
+      wrd.set("tag", splits[-1].strip())
+      #doc.text = ",".join(splits[-3:]) if doc.text==None else doc.text+",".join(splits[-3:])        
+
+mydata = ET.tostring(confdoc)  
+myfile = open("ner_dataset.xml", "wb")  
+myfile.write(mydata) 
+
+       
+sys.exit()
+'''
+
 text = """
 Police vehicles and ambulances descended on Lansdowne Centre Friday after a morning shooting.
 BC Emergency Health Services spokesperson Shannon Miller said they received a call at 7:33 a.m., and paramedics arrived on scene by 7:44 a.m.
@@ -22,7 +46,7 @@ result = model.classify(text);
 print(result)
 
 
-train_model(GenericRetriever, "location-ir-training-config.xml", "location-ir.v0.model");
+#train_model(GenericRetriever, "location-ir-training-config.xml", "location-ir.v0.model");
 model = load_model("location-ir.v0.model");
 locations = model.retrieve(text);
 print(locations)
