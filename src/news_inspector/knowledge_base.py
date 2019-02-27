@@ -37,54 +37,90 @@ class KnowledgeBase(Trainable):
     
     def findByName(self, name, module, clazz):
         try:
-            node = self.nodenames[name] 
-            if 
-            return 
+            return self.nodenames[name] 
         except:
             return None
-    
-    def addNode(nodeInfo, name, module, clazz):
         
+    def addRelation(node, targets):
+        for target in targets:
+            if node != target:
+                node.addArc(target) 
+            
     def addClique(self, nodes):
         for node in nodes:
+           self.addRelation(node, nodes)
         
 class Node(ABC):
-     
+    
+    id = None
+    name = None
+    visited = False 
+    arcs = {} 
+    tmp = {}
+    
     def __init__(self, attribs):    
-        self.id = attribs['id']
-        self.name = attribs['name']
+        pass
+
+    @abstractmethod    
+    def addArc(self, node):    
+        pass
     
     @abstractmethod    
-    def save(repodir):    
+    def save(self, repodir):    
         pass    
     
-    
+    def traverseDFS(self):
+        self.visited = True          
+        for arc in arcs:            
+            if not arc.target.visited:
+                arc.target.traverse()
+        
+    def traverseBFS(self):
+        acum = []
+        acum.append(self)
+        while len(acum) > 0:
+            
+            next = acum.pop()
+            for arc in next.arcs:
+                if not arc.target.visited: acum.append(arc.target)
+                    
+            next.visited = True             
     
 class Arc(ABC):
 
-    def __init__(self, attribs):
+    def __init__(self, node, attribs=None):
         pass
-            
+    
+    @abstractmethod    
+    def update(attribs=none):    
+        pass           
     
 class SimpleNode(Node):   
     
-    def __init__(self, attribs, name):    
+    def __init__(self, attribs, name):            
         self.name = name
-        self.arcs = {}  # 'type_of_rel': [id1, id2] 
+
    
+    def updateArc(node):    
+        try:
+            self.arcs[node.id].update()
+        except:
+            self.arcs[node.id] = new WeightedArc(node)
+
     def save(repodir):    
         pass
     
     
 class WeightedArc(Arc):
 
-    def __init__(self, attribs):
-        self.target = int(attribs['target'])
+    def __init__(self, node, attribs=None):
+        self.target = node
         self.weight = float(attribs['weight'])
-        self.time = int(attribs['time'])
-        
-        
     
+    def update():
+        self.weight = self.weight + 1
+        
+        
 class KBGraph:
     
     def __init__(self):
@@ -102,7 +138,7 @@ class NaiveKnowledgeBase(KnowledgeBase):
         for text in texts:
             for sentence in nlp.getSentences(text):
                 self.addNaiveClique(nlp.getWords(sentence))
-                
+        
                 
     def makeGraph(self, array):
         return KBGraph() 
