@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import xml.etree.ElementTree as ET
 
+import news_inspector.nlp as nlp
 from news_inspector.core import Trainable
 
 class KnowledgeBase(Trainable):
@@ -34,7 +35,19 @@ class KnowledgeBase(Trainable):
         self.nodeids[node.id] = node
         self.nodenames[node.name] = node.id    
     
+    def findByName(self, name, module, clazz):
+        try:
+            node = self.nodenames[name] 
+            if 
+            return 
+        except:
+            return None
     
+    def addNode(nodeInfo, name, module, clazz):
+        
+    def addClique(self, nodes):
+        for node in nodes:
+        
 class Node(ABC):
      
     def __init__(self, attribs):    
@@ -55,9 +68,8 @@ class Arc(ABC):
     
 class SimpleNode(Node):   
     
-    def __init__(self, attribs):    
-        self.id = None
-        self.name = None
+    def __init__(self, attribs, name):    
+        self.name = name
         self.arcs = {}  # 'type_of_rel': [id1, id2] 
    
     def save(repodir):    
@@ -81,9 +93,17 @@ class KBGraph:
 
 class NaiveKnowledgeBase(KnowledgeBase):
 
+    def addNaiveClique(self, names):
+        self.addClique([SimpleNode(name) for name in names])
+            
+    
     def learn(self, config):
-        pass
-
+        texts = config.getTexts()
+        for text in texts:
+            for sentence in nlp.getSentences(text):
+                self.addNaiveClique(nlp.getWords(sentence))
+                
+                
     def makeGraph(self, array):
         return KBGraph() 
     
