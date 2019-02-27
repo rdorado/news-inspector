@@ -1,5 +1,5 @@
 from abc import abstractmethod
-
+import xml.etree.ElementTree as ET
 from sklearn_crfsuite import CRF
 import pandas as pd
 import numpy as np
@@ -96,19 +96,29 @@ class Retriever(Trainable):
 class GenericRetriever(Retriever):
 
      def learn(self, config):  
-         data = pd.read_csv("ner_dataset.csv", encoding="latin1")   
-         data = data.fillna(method="ffill")
+         texts = config.getTexts()
+
+         sentences = [] 
+         for text in texts:
+             for sent in ET.fromstring(text).findall('sentence'):
+                 stemp = []
+                 for wrd in sent.findall('word'):
+                     stemp.append([wrd.text, wrd.attrib['pos'], wrd.attrib['tag']])
+                 sentences.append(stemp)
+         #data = pd.read_csv("ner_dataset.csv", encoding="latin1")   
+         #data = data.fillna(method="ffill")
+       
+         #words = list(set(data["Word"].values))
+         #n_words = len(words);
          
-         words = list(set(data["Word"].values))
-         n_words = len(words);
-         
-         getter = SentenceGetter(data)
+         #getter = SentenceGetter(data)
          #sent = getter.get_next()
-         sentences = getter.sentences
+         #sentences = getter.sentences
 
          X = [sent2features(s) for s in sentences]
          y = [sent2labels(s) for s in sentences]
-        
+         #print(X)        
+
          self.clf = CRF(algorithm='lbfgs', c1=10, c2=0.1, max_iterations=100, all_possible_transitions=False)
          self.clf.fit(X, y)
 
@@ -116,6 +126,20 @@ class GenericRetriever(Retriever):
      def retrieve(self, text):
          text = nltk.pos_tag(nltk.word_tokenize(text.lower()))
          X = sent2features(text)
-         return self.clf.predict([X])
+         #print(text)
+         resp = []
+         pred = self.clf.predict([X])[0]
+         acum = None
+         for i in range(len(pred)):
+         
+           if pred[i][0] == 'B':
+              acum = text[i][0]
+           elif pred[i][0] == 'I':
+              acum = acum+" "+text[i][0]
+           else: 
+              if acum != None: resp.append(acum)
+              acum = None
+           
+         return resp
 
 

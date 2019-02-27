@@ -37,7 +37,7 @@ class TrainingConfig:
                 try: 
                     self.targets.append( doc.attrib['target'] )
                 except: pass  
-        self.output = root.attrib['output']
+        #self.output = root.attrib['output']
 
     def getTexts(self):
         return self.texts

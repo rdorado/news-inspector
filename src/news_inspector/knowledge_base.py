@@ -1,5 +1,5 @@
-from abc import abstractmethod
-import xml.etree.ElementTree as xmlreader
+from abc import ABC, abstractmethod
+import xml.etree.ElementTree as ET
 
 from news_inspector.core import Trainable
 
@@ -14,7 +14,7 @@ class KnowledgeBase(Trainable):
         if not os.path.isfile(filename):
             raise Exception("Fatal error. Training configuration file '"+filename+"' not found.")
     
-        tree = xmlreader.parse(filename)
+        tree = ET.parse(filename)
         root = tree.getroot()         
     
         module = root.attrib['module']
