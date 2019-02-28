@@ -8,6 +8,19 @@ from news_inspector.knowledge_base import NaiveKnowledgeBase
 
 '''
 import sys
+from muud.database import Source, News
+
+articles = News.findAll();
+with open("docs.txt","w") as f:
+    for article in articles:
+        f.write(article.text+"\n")
+
+
+sys.exit()
+'''
+
+'''
+import sys
 import xml.etree.ElementTree as ET
 
 confdoc = ET.Element('document')
@@ -56,5 +69,6 @@ print(keywords)
 
 train_model(NaiveKnowledgeBase, "naive-knowledgebase-training-config.xml", "naive-knowledgebase.v0.model");
 model = load_model("naive-knowledgebase.v0.model");
-graph = model.makeGraph(locations + keywords);
-print(graph)
+print(model.findRelated("victim"))
+#graph = model.makeGraph(locations + keywords);
+#print(graph.listNodesAsStrings())
