@@ -40,6 +40,13 @@ class KnowledgeBase(Trainable):
         self.nodeids[node.id] = node
         self.nodenames[node.name] = node.id    
     
+    def findOrCreate(self, name, clazz):
+        node = self.findByName(name)
+        if node != None: return node
+        node = clazz(name)
+        self.addNode(node)
+        return node
+
     def findByName(self, name):
         try:
             return self.nodeids[self.nodenames[name]] 
@@ -54,13 +61,14 @@ class KnowledgeBase(Trainable):
             self.nodeids[self.n] = node
 
             self.n = self.n + 1
+            node.save(self.repodir)
      
     def addRelation(self, node, targets):
   
         for target in targets:
             if node != target:
                 node.updateArc(target) 
-        node.save(self.repodir)
+        #node.save(self.repodir)    
 
     def addClique(self, nodes):
         for node in nodes:
@@ -127,13 +135,13 @@ class SimpleNode(Node):
             self.arcs[node.id] = WeightedArc(node)
 
     def save(self, repodir):    
-        node = ET.Element('node')  
-        
+        node = ET.Element('node', name=self.name, id=str(self.id))  
+        for arcid, arc in self.arcs.items():
         #node.set('id',self.id)  
-        #items = ET.SubElement(node, 'items')  
+           ET.SubElement(node, 'arc', id=str(arcid), name=arc.target.name)  
 
-        mydata = ET.tostring(data)  
-        myfile = open(repodir+"/"+self.name+".xml", "w")  
+        mydata = ET.tostring(node)  
+        myfile = open(repodir+"/"+self.name+".xml", "wb")  
         myfile.write(mydata)  
     
     
@@ -157,13 +165,14 @@ class KBGraph:
 class NaiveKnowledgeBase(KnowledgeBase):
 
     def addNaiveClique(self, names):
-        self.addClique([SimpleNode(name) for name in names])
+        
+        self.addClique([self.findOrCreate(name, SimpleNode) for name in names])
             
     
     def learn(self, config):
         texts = config.getTexts()
 
-        self.repodir = "data/kbrepo"
+        self.repodir = "kbrepo"
         for text in texts:
             for sentence in nlp.getSentences(text):
                 #print(sentence)
