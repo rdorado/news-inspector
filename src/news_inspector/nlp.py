@@ -10,7 +10,6 @@ def getKeywords(text):
         sentence = sentence.lower()        
         #tokens = word_tokenize(sentence)
         tokens = tokenizer.tokenize(sentence)  
-        print(tokens) 
         #words = [w for w in tokens if not w in stopwords.words('english')]
         words = [w for w in tokens if not w in stop_words.ENGLISH_STOP_WORDS]
 
@@ -19,7 +18,7 @@ def getKeywords(text):
     return resp
 
 def getSentences(text):
-    return sent_tokenize(text): 
+    return sent_tokenize(text)
 
 def getWords(text):
     tokenizer = RegexpTokenizer(r'[a-z]+')

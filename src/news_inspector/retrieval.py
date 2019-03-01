@@ -57,6 +57,7 @@ def sent2features(sent):
 def sent2labels(sent):
     return [label for token, postag, label in sent]
 
+'''
 def sent2tokens(sent):
     return [token for token, postag, label in sent]
 
@@ -80,7 +81,7 @@ class SentenceGetter(object):
             return s
         except:
             return None
-
+'''
 
 
 class Retriever(Trainable):
@@ -105,19 +106,9 @@ class GenericRetriever(Retriever):
                  for wrd in sent.findall('word'):
                      stemp.append([wrd.text, wrd.attrib['pos'], wrd.attrib['tag']])
                  sentences.append(stemp)
-         #data = pd.read_csv("ner_dataset.csv", encoding="latin1")   
-         #data = data.fillna(method="ffill")
-       
-         #words = list(set(data["Word"].values))
-         #n_words = len(words);
-         
-         #getter = SentenceGetter(data)
-         #sent = getter.get_next()
-         #sentences = getter.sentences
 
          X = [sent2features(s) for s in sentences]
          y = [sent2labels(s) for s in sentences]
-         #print(X)        
 
          self.clf = CRF(algorithm='lbfgs', c1=10, c2=0.1, max_iterations=100, all_possible_transitions=False)
          self.clf.fit(X, y)
@@ -126,7 +117,6 @@ class GenericRetriever(Retriever):
      def retrieve(self, text):
          text = nltk.pos_tag(nltk.word_tokenize(text.lower()))
          X = sent2features(text)
-         #print(text)
          resp = []
          pred = self.clf.predict([X])[0]
          acum = None
