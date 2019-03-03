@@ -4,11 +4,12 @@ from sklearn.feature_extraction import stop_words
 #from nltk.corpus import stopwords
 
 def getKeywords(text):
-    resp = []
+    resp = []    
     for sentence in sent_tokenize(text):
         tokenizer = RegexpTokenizer(r'[a-z]+')
         sentence = sentence.lower()        
         #tokens = word_tokenize(sentence)
+        
         tokens = tokenizer.tokenize(sentence)  
         #words = [w for w in tokens if not w in stopwords.words('english')]
         words = [w for w in tokens if not w in stop_words.ENGLISH_STOP_WORDS]
@@ -22,7 +23,7 @@ def getSentences(text):
 
 def getWords(text):
     tokenizer = RegexpTokenizer(r'[a-z]+')
-    tokens = tokenizer.tokenize(text)  
+    tokens = tokenizer.tokenize(text.lower())  
     return [w for w in tokens if not w in stop_words.ENGLISH_STOP_WORDS]
     
 class DefaultTextProcessor:

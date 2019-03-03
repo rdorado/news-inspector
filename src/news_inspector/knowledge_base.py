@@ -68,7 +68,7 @@ class KnowledgeBase(Trainable):
         for target in targets:
             if node != target:
                 node.updateArc(target) 
-        #node.save(self.repodir)    
+        node.save(self.repodir)    
 
     def addClique(self, nodes):
         for node in nodes:
@@ -115,30 +115,34 @@ class Node(ABC):
     
 class Arc(ABC):
 
-    def __init__(self, node, attribs=None):
+    def __init__(self, node):
         pass
     
     @abstractmethod    
-    def update(attribs=None):    
+    def update(self, attribs=None):    
         pass           
     
-
+    @abstractmethod 
+    def save(self, ET, node):
+        pass
+ 
 class SimpleNode(Node):   
     
     def __init__(self, name, attribs=None):            
         self.name = name
+        self.arcs = {}
    
-    def updateArc(self, node):    
+    def updateArc(self, target):    
         try:
-            self.arcs[node.id].update()
+            self.arcs[target.id].update()
         except:
-            self.arcs[node.id] = WeightedArc(node)
+            self.arcs[target.id] = WeightedArc(target)
 
     def save(self, repodir):    
         node = ET.Element('node', name=self.name, id=str(self.id))  
         for arcid, arc in self.arcs.items():
         #node.set('id',self.id)  
-           ET.SubElement(node, 'arc', id=str(arcid), name=arc.target.name)  
+           arc.save(node)
 
         mydata = ET.tostring(node)  
         myfile = open(repodir+"/"+self.name+".xml", "wb")  
@@ -147,15 +151,18 @@ class SimpleNode(Node):
     
 class WeightedArc(Arc):
 
-    def __init__(self, node, attribs=None):
+    def __init__(self, node):
         self.target = node
-        if attribs is not None:
-            self.weight = float(attribs['weight'])
+        self.weight = 1
+        #if attribs is not None:
+        #    self.weight = float(attribs['weight'])
     
-    def update():
+    def update(self):
         self.weight = self.weight + 1
-        
-        
+
+    def save(self, parent):        
+        ET.SubElement(parent, 'arc', target=str(self.target.id), weight=str(self.weight))    
+  
 class KBGraph:
     
     def __init__(self):
@@ -175,8 +182,9 @@ class NaiveKnowledgeBase(KnowledgeBase):
         self.repodir = "kbrepo"
         for text in texts:
             for sentence in nlp.getSentences(text):
-                #print(sentence)
-                self.addNaiveClique(nlp.getWords(sentence))
+                words = nlp.getWords(sentence)
+
+                self.addNaiveClique(words)
         #print(len(self.nodenames))
     
     def findRelated(self, name, level=1):

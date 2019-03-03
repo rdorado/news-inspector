@@ -69,6 +69,6 @@ print(keywords)
 
 train_model(NaiveKnowledgeBase, "naive-knowledgebase-training-config.xml", "naive-knowledgebase.v0.model");
 model = load_model("naive-knowledgebase.v0.model");
-print("'"+str(model.findRelated("victim"))+"'")
+print("'"+str(model.findRelated("bbb"))+"'")
 #graph = model.makeGraph(locations + keywords);
 #print(graph.listNodesAsStrings())
