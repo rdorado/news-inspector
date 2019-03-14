@@ -6,8 +6,14 @@ from news_inspector import nlp
 from news_inspector.classifiers import GenericClassifier
 from news_inspector.retrieval import GenericRetriever
 from news_inspector.knowledge_base import NaiveKnowledgeBase
+'''
+
+def test_classifier():
+   pass
+  
 
 
+'''
 text = """
 Police vehicles and ambulances descended on Lansdowne Centre Friday after a morning shooting.
 BC Emergency Health Services spokesperson Shannon Miller said they received a call at 7:33 a.m., and paramedics arrived on scene by 7:44 a.m.
