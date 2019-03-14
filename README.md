@@ -15,12 +15,30 @@ All the methods can be configured and trained/retrained easily. Once trained, th
 Installation
 ===========================================
 
+```python
+pip install news-inspector
+```
 
 Quick start
 ===========================================
 
+Train the model:
+
+```python 
+from news_inspector import GenericClassifier
+train_model(GenericClassifier, "myconfig.xml", "myclassifier.model");
+```
+
+Load and use the model:
+
+```python
+from news_inspector import load_model
+
+model = load_model("myclassifier.model");
+result = model.classify(text);
+```
 
 Documentation
 ===========================================
 
-Read the docs at https://site-analyzer.readthedocs.io/en/latest/.
+Read the docs at https://news-inspector.readthedocs.io/en/latest/.
