@@ -5,7 +5,7 @@ news-inspector
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/rdorado/news-inspector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rdorado/site-analyzer/)
 [![Build Status](https://travis-ci.com/rdorado/news-inspector.svg?branch=master)](https://travis-ci.com/rdorado/news-inspector)
 
-News-inspector is a free software library for analyzing and acquiring information from news. It features various NLP and machine learning tasks that can be performed on news articles:
+News-inspector is a free software library for analyzing and acquiring information from news. It features various NLP and machine learning tasks that can be performed on text news articles:
 
 * classification
 * named entity recognition
