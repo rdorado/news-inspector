@@ -10,7 +10,7 @@ News-inspector is a free software library for analyzing and acquiring informatio
 * named entity recognition
 * knowledge-based article search
 
-All the methods can be configured and trained/retrained easily. Once trained, they can be loaded and used on new articles.
+All the methods can be easily configured and trained/retrained. Once trained, they can be loaded and used on new articles.
 
 Requirements
 ===========================================
