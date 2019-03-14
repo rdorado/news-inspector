@@ -12,6 +12,13 @@ News-inspector is a free software library for analyzing and acquiring informatio
 
 All the methods can be configured and trained/retrained easily. Once trained, they can be loaded and used on new articles.
 
+Requirements
+===========================================
+
+* Python >=3.4
+* scikit-learn>=0.17.1
+* sklearn-crfsuite>=0.3
+
 Installation
 ===========================================
 
