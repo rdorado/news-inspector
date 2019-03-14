@@ -1,3 +1,4 @@
+'''
 from news_inspector.core import train_model
 from news_inspector.core import load_model
 from news_inspector import nlp
@@ -6,36 +7,6 @@ from news_inspector.classifiers import GenericClassifier
 from news_inspector.retrieval import GenericRetriever
 from news_inspector.knowledge_base import NaiveKnowledgeBase
 
-'''
-import sys
-from muud.database import Source, News
-articles = News.findAll();
-with open("docs.txt","w") as f:
-    for article in articles:
-        f.write(article.text+"\n")
-sys.exit()
-'''
-
-'''
-import sys
-import xml.etree.ElementTree as ET
-confdoc = ET.Element('document')
-with open("ner_dataset.csv", "r") as infile:
-   for line in infile.readlines():
-      if line.startswith("Sentence: "):
-         doc = ET.SubElement(confdoc, "sentence")
-      splits = line.split(",")
-      wrd = ET.SubElement(doc, "word")
-      wrd.text = splits[-3].strip()
-      wrd.set("pos", splits[-2].strip())
-      wrd.set("tag", splits[-1].strip())
-      #doc.text = ",".join(splits[-3:]) if doc.text==None else doc.text+",".join(splits[-3:])        
-mydata = ET.tostring(confdoc)  
-myfile = open("ner_dataset.xml", "wb")  
-myfile.write(mydata) 
-       
-sys.exit()
-'''
 
 text = """
 Police vehicles and ambulances descended on Lansdowne Centre Friday after a morning shooting.
@@ -66,3 +37,4 @@ model = load_model("naive-knowledgebase.v0.model");
 print("'"+str(model.findRelated("bbb"))+"'")
 #graph = model.makeGraph(locations + keywords);
 #print(graph.listNodesAsStrings())
+'''
