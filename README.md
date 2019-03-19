@@ -19,6 +19,7 @@ Requirements
 * Python >=3.4
 * scikit-learn>=0.17.1
 * sklearn-crfsuite>=0.3
+* nltk>=3.24
 
 Installation
 ===========================================
