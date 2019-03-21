@@ -53,22 +53,22 @@ Mounties cordoned off a section of the parking lot beginning at HomeSense and ex
 Anyone who witnessed the shooting should call Richmond RCMP at 604-278-1212 and cite file 2018-41056.
 """
 
-train_model(GenericClassifier, "polarity-classifier-training-config.xml", "polarity-classifier.v0.model");
-model = load_model("polarity-classifier.v0.model");
+train_model(GenericClassifier, "test/polarity-classifier-training-config.xml", "models/polarity-classifier.v0.model");
+model = load_model("models/polarity-classifier.v0.model");
 result = model.classify(text);
 print(result)
 
 
-#train_model(GenericRetriever, "location-ir-training-config.xml", "location-ir.v0.model");
-model = load_model("location-ir.v0.model");
+train_model(GenericRetriever, "test/location-ir-training-config.xml", "models/location-ir.v0.model");
+model = load_model("models/location-ir.v0.model");
 locations = model.retrieve(text);
 print(locations)
 
 keywords = nlp.getKeywords(text);
 print(keywords)
 
-train_model(NaiveKnowledgeBase, "naive-knowledgebase-training-config.xml", "naive-knowledgebase.v0.model");
-model = load_model("naive-knowledgebase.v0.model");
-print("'"+str(model.findRelated("bbb"))+"'")
+train_model(NaiveKnowledgeBase, "test/naive-knowledgebase-training-config.xml", "models/naive-knowledgebase.v0.model");
+model = load_model("models/naive-knowledgebase.v0.model");
+print("'"+str(model.findRelated("police"))+"'")
 #graph = model.makeGraph(locations + keywords);
 #print(graph.listNodesAsStrings())

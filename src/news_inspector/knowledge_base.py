@@ -163,6 +163,7 @@ class WeightedArc(Arc):
     def save(self, parent):        
         ET.SubElement(parent, 'arc', target=str(self.target.id), weight=str(self.weight))    
   
+
 class KBGraph:
     
     def __init__(self):
@@ -189,7 +190,12 @@ class NaiveKnowledgeBase(KnowledgeBase):
     
     def findRelated(self, name, level=1):
         #print(len(self.nodenames))
-        return self.findByName(name).arcs
+        resp = []
+        node = self.findByName(name)
+        if node != None: 
+            for arcid, arc in self.findByName(name).arcs.items():
+                resp.append(arc.target.name)
+        return resp
             
     def makeGraph(self, array):
         return KBGraph() 

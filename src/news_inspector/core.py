@@ -16,7 +16,7 @@ class TrainingConfig:
 
     def loadFromFile(self, filename):
         if not os.path.isfile(filename):
-            raise Exception("Fatal error. Training configuration file '"+filename+"' not found.")
+            raise Exception("Fatal error. Training configuration file '"+filename+"' in folder'"+os.path.dirname(os.path.abspath(filename))+"' not found.")
 
         tree = xmlreader.parse(filename)
         root = tree.getroot() 
@@ -25,7 +25,7 @@ class TrainingConfig:
         for doc in root.iter('document'):
             text = ""
             if not os.path.isfile(doc.attrib['file']): 
-                raise Exception("Warning. Document '"+doc.attrib['file']+"' in '"+filename+"'was not found. Skipping it.")
+                raise Exception("Error. Document '"+doc.attrib['file']+"' in '"+filename+"' was not found. Looking in folder in folder '"+os.path.dirname(os.path.abspath(doc.attrib['file']))+"'. Skipping it.")
             else:
                 encoding = "utf-8"
                 try: 
