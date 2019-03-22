@@ -1,5 +1,6 @@
-from news_inspector.core import train_model
+
 '''
+from news_inspector.core import train_model
 from news_inspector.core import load_model
 from news_inspector import nlp
 
