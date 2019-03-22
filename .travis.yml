@@ -4,5 +4,6 @@ python:
 script: pytest
 
 before_install:
-  - "pip install -U pip"
-  - "python setup.py install"
+  - sudo apt-get -y install liblapack-dev libblas-dev
+  - pip install -U pip
+  - python setup.py install
