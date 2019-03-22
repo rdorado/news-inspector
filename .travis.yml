@@ -5,4 +5,4 @@ script: pytest
 
 before_install:
   - "pip install -U pip"
-  - "python setup.py install"
+
