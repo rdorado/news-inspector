@@ -4,6 +4,7 @@ python:
 script: pytest
 
 before_install:
-  - sudo apt-get -y install liblapack-dev libblas-dev
+  - sudo apt-get update
+  - sudo apt-get -y install liblapack-dev libblas-dev gfortran
   - pip install -U pip
   - python setup.py install
