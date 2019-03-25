@@ -1,8 +1,8 @@
 from news_inspector.core import train_model
-'''
 from news_inspector.core import load_model
 from news_inspector import nlp
 
+'''
 from news_inspector.classifiers import GenericClassifier
 from news_inspector.retrieval import GenericRetriever
 from news_inspector.knowledge_base import NaiveKnowledgeBase
