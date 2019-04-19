@@ -7,6 +7,7 @@ news-inspector
 
 News-inspector is a free software library for analyzing and acquiring information from news. It features various NLP and machine learning tasks that can be performed on text news articles:
 
+
 * classification
 * named entity recognition
 * knowledge-based article search
